@@ -1,3 +1,3 @@
-# microexpnet
+# MicroExpNet
 
 Coming soon...
