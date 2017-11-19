@@ -37,7 +37,6 @@ class CandidateExpNet_p12():
 		self.accuracy = tf.reduce_mean(tf.cast(self.correct_pred, tf.float32))
 
 	def initParameters(self):
-		# This function is used when Stage A is running
 		self.w = {
 		# 8x8 conv, 1 input channel, 16 outputs
 		'wc1': tf.get_variable('wc1', [8, 8, 1, 16], initializer=tf.contrib.layers.xavier_initializer_conv2d()),
