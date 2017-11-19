@@ -25,6 +25,8 @@ If you use these models in your research, please cite:
 ## API
 **MicroExpNet(x, y, teacherLogits, lr, nClasses, imgXdim, imgYdim, batchSize, keepProb, temperature, lambda_)**
 
+This is the class where the magic happens.
+
 **Parameters**
   - x: Tensorflow placeholder for input images 
   - y: Tensorflow placegolder for one-hot labels
