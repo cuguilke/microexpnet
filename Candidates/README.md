@@ -11,10 +11,11 @@ trainCandidates is a standalone Python script; you can control its behavior by p
 python trainCandidates.py <mode> <valSet> <labelPath> <outputGraphName> <outputModelName> <learningRate> <squeezeCoefficient>
   
 **Arguments**
-  * mode: "-v" 		-> CandidateExpNet_v, 
-					"-p1" 	-> CandidateExpNet_p1
-					"-p2" 	-> CandidateExpNet_p2
-					"-p12" 	-> CandidateExpNet_p12
+  * mode: 
+  	* "-v"   -> CandidateExpNet_v, 
+	* "-p1"  -> CandidateExpNet_p1
+	* "-p2"  -> CandidateExpNet_p2
+	* "-p12" -> CandidateExpNet_p12
   * valSet: Index of the chosen test batch (10 batches in total) or file path of the test labels
   * labelPath: Absolute path of the label file
   * outputGraphName: Name of the learning curve graph
