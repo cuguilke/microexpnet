@@ -12,7 +12,7 @@ By [Ilke Cugu](https://scholar.google.com.tr/citations?user=v6YG0YEAAAAJ&hl=en),
 
 MicroExpNet is an extremely small CNN written with the [TensorFlow](https://www.tensorflow.org/) library for facial expression recognition (FER) using frontal face images. This repository contains the codes described in the paper "MicroExpNet: An Extremely Small and Fast Model For Expression Recognition From Frontal Face Images" (LINK WILL BE ADDED).
 
-# Full list of items
+**Full list of items**
   * MicroExpNet.py: The original source code of the proposed FER model
   * Teacher_Logits: Logits of the teacher network for knowledge distillation
   * Candidates: Candidate networks build in search of a better FER model
@@ -25,7 +25,7 @@ If you use these models in your research, please cite:
 ## API
 **MicroExpNet(x, y, teacherLogits, lr, nClasses, imgXdim, imgYdim, batchSize, keepProb, temperature, lambda_)**
 
-# Parameters
+**Parameters**
   - x: Tensorflow placeholder for input images 
   - y: Tensorflow placegolder for one-hot labels
   - teacherLogits: Tensorflow placeholder for the logits of the teacher
