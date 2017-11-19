@@ -8,6 +8,7 @@ You can start using these models either:
 trainCandidates is a standalone Python script; you can control its behavior by passing various command-line arguments.
 
 **Usage**
+
 `python trainCandidates.py <mode> <valSet> <labelPath> <outputGraphName> <outputModelName> <learningRate> <squeezeCoefficient>`
   
 **Arguments**
