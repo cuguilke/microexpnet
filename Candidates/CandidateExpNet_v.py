@@ -8,7 +8,7 @@ python_version  :2.7.11
 import tensorflow as tf
 
 class CandidateExpNet_v():
-	def __init__(self, x, y, lr, nClasses, imgXdim, imgYdim, batchSize, keepProb, squeezeCoefficient):
+	def __init__(self, x, y, lr=1e-04, nClasses=8, imgXdim=84, imgYdim=84, batchSize=64, keepProb=0.5, squeezeCoefficient=1):
 		self.x = x
 		self.y = y 
 		self.w = {}
