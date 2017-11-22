@@ -7,6 +7,7 @@ By [Ilke Cugu](https://scholar.google.com.tr/citations?user=v6YG0YEAAAAJ&hl=en),
 1. [Introduction](#introduction)
 2. [Citation](#citation)
 3. [API](#api)
+4. [Models](#models)
 
 ## Introduction
 
@@ -50,3 +51,11 @@ This is the class where the magic happens.
   - keepProb: Dropout (default: 0.5)
   - temperature: The hyperparameter to soften the teacher's probability distributions (default: 8)
   - lamba_: Weight of the soft targets (default: 0.5)
+
+## Models
+
+We provide pre-trained MicroExpNet models for both CK+ and Oulu-CASIA.
+
+**Labels of the both models**
+
+`0: neutral, 1: anger, 2: contempt, 3: disgust, 4: fear, 5: happy, 6: sadness, 7: surprise`
