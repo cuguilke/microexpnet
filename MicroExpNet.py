@@ -42,6 +42,7 @@ class MicroExpNet():
 			self.cost = ((1.0 - lambda_) * self.cost_1 + lambda_ * self.cost_2)
 			self.optimizer = tf.train.AdamOptimizer(learning_rate=self.learningRate).minimize(self.cost)		
 		else: # For standalone testing
+			self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=self.output, labels=self.y))
 			self.pred = tf.nn.softmax(self.output)
 
 		# Evaluate model 
