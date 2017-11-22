@@ -10,7 +10,7 @@ By [Ilke Cugu](https://scholar.google.com.tr/citations?user=v6YG0YEAAAAJ&hl=en),
 
 ## Introduction
 
-MicroExpNet is an extremely small CNN written with the [TensorFlow](https://www.tensorflow.org/) library for facial expression recognition (FER) using frontal face images. This repository contains the codes described in the paper "MicroExpNet: An Extremely Small and Fast Model For Expression Recognition From Frontal Face Images" (https://arxiv.org/abs/1711.07011).
+MicroExpNet is an extremely small (under 1MB) and fast (1408 FPS on i7 CPU) [TensorFlow](https://www.tensorflow.org/) convolutional neural network model for facial expression recognition (FER) from frontal face images.  This repository contains the codes described in the paper "MicroExpNet: An Extremely Small and Fast Model For Expression Recognition From Frontal Face Images" (https://arxiv.org/abs/1711.07011).
 
 **Full list of items**
   * MicroExpNet.py: The original source code of the proposed FER model
@@ -20,7 +20,18 @@ MicroExpNet is an extremely small CNN written with the [TensorFlow](https://www.
 ## Citation
 
 If you use these models in your research, please cite:
-(BIBTEX WILL BE ADDED)
+
+```
+@ARTICLE{MicroExpNet,
+   author = {{{\c C}u{\u g}u}, {\.I}. and {{\c S}ener}, E. and {Akbas}, E.},
+    title = "{MicroExpNet: An Extremely Small and Fast Model For Expression Recognition From Frontal Face Images}",
+  journal = {ArXiv e-prints},
+archivePrefix = "arXiv",
+   eprint = {1711.07011},
+     year = 2017,
+    month = Nov,  
+}
+```
 
 ## API
 **MicroExpNet(x, y, teacherLogits, lr, nClasses, imgXdim, imgYdim, batchSize, keepProb, temperature, lambda_)**
