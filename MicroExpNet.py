@@ -10,7 +10,7 @@ python_version  :2.7.11
 import tensorflow as tf
 
 class MicroExpNet():
-	def __init__(self, x, y, teacherLogits=None, lr=1e-04, nClasses=8, imgXdim=84, imgYdim=84, batchSize=64, keepProb=0.5, temperature=8, lambda_=0.5):
+	def __init__(self, x, y=None, teacherLogits=None, lr=1e-04, nClasses=8, imgXdim=84, imgYdim=84, batchSize=64, keepProb=1.0, temperature=8, lambda_=0.5):
 		self.x = x
 		self.w = {}
 		self.b = {}
@@ -22,7 +22,6 @@ class MicroExpNet():
 		self.imgYdim = imgYdim
 		self.nClasses = nClasses
 		self.batchSize = batchSize 
-		self.squeezeCoefficient = squeezeCoefficient
 		self.learningRate = lr 
 		self.dropout = keepProb
 		self.fcOutSize = 16
@@ -31,7 +30,7 @@ class MicroExpNet():
 		self.initParameters()
 		self.output, self.layerInfo = self.run() 
 		
-		if teacherLogits != None: # For training
+		if self.teacherLogits != None: # For training
 			# Define losses and optimizers & train the architecture with KD 
 			self.outputTeacher = tf.scalar_mul(1.0 / self.T, self.teacherLogits)
 			self.outputTeacher = tf.nn.softmax(self.outputTeacher)
@@ -42,12 +41,14 @@ class MicroExpNet():
 			self.cost = ((1.0 - lambda_) * self.cost_1 + lambda_ * self.cost_2)
 			self.optimizer = tf.train.AdamOptimizer(learning_rate=self.learningRate).minimize(self.cost)		
 		else: # For standalone testing
-			self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=self.output, labels=self.y))
+			if self.y != None:
+				self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=self.output, labels=self.y))
 			self.pred = tf.nn.softmax(self.output)
 
-		# Evaluate model 
-		self.correct_pred= tf.equal(tf.argmax(self.pred, 1), tf.argmax(self.y, 1))
-		self.accuracy = tf.reduce_mean(tf.cast(self.correct_pred, tf.float32))
+		if self.y != None: # For labeled images
+			# Evaluate model 
+			self.correct_pred= tf.equal(tf.argmax(self.pred, 1), tf.argmax(self.y, 1))
+			self.accuracy = tf.reduce_mean(tf.cast(self.correct_pred, tf.float32))
 
 	def initParameters(self):
 		self.w = {
