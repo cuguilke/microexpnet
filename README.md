@@ -34,11 +34,11 @@ If you use these models in your research, please cite:
 ## API
 **MicroExpNet(x, y, teacherLogits, lr, nClasses, imgXdim, imgYdim, batchSize, keepProb, temperature, lambda_)**
 
-This is the class where the magic happens.
+This is the class where the magic happens. Take a look at exampleUsage.py for a quick test drive.
 
 **Parameters**
   - x: Tensorflow placeholder for input images 
-  - y: Tensorflow placeholder for one-hot labels
+  - y: Tensorflow placeholder for one-hot labels (default: None -> unlabeled image testing)
   - teacherLogits: Tensorflow placeholder for the logits of the teacher (default: None -> for standalone testing)
   - lr: Learning rate (default: 1e-04)
   - nClasses: Number of emotion classes (default: 8)
