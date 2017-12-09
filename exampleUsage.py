@@ -68,6 +68,7 @@ if __name__ == '__main__':
 		print("In detail:")
 		print("		imagePath	: Absolute path of the input image")
 		print("		modelDir	: Absolute path of the model directory")
+		print("Example: python exampleUsage.py neo.jpeg ./Models/OuluCASIA/")
 	else:
 		# Dynamic parameters
 		imagePath = str(sys.argv[1])
