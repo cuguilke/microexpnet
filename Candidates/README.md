@@ -33,7 +33,7 @@ These classes are used to build each candidate networks explained in the paper.
 
 **Parameters**
   - x: Tensorflow placeholder for input images 
-  - y: Tensorflow placegolder for one-hot labels
+  - y: Tensorflow placeholder for one-hot labels
   - lr: Learning rate (default: 1e-04)
   - nClasses: Number of emotion classes (default: 8)
   - imgXdim: Dimension of the image (default: 84)
