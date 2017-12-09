@@ -3,8 +3,8 @@ Title           :MicroExpNet.py
 Description     :CNN class for facial expression recognition
 Author          :Ilke Cugu & Eren Sener & Emre Akbas
 Date Created    :20170428
-Date Modified   :20171122
-version         :1.4
+Date Modified   :20171210
+version         :1.5
 python_version  :2.7.11
 '''
 import tensorflow as tf
