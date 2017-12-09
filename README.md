@@ -15,7 +15,7 @@ MicroExpNet is an extremely small (under 1MB) and fast (1408 FPS on i7 CPU) [Ten
 
 **Full list of items**
   * MicroExpNet.py: The original source code of the proposed FER model
-  * exampleUsage.py: An example Python script to get prediction from a pre-trained MicroExpNet for an unlabeled image
+  * exampleUsage.py: A script to get prediction from a pre-trained MicroExpNet for an unlabeled image
   * Models: Pre-trained MicroExpNet models for CK+ and Oulu-CASIA datasets.
   * Candidates: Candidate networks build in search of a better FER model
   
