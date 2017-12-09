@@ -34,7 +34,7 @@ If you use these models in your research, please cite:
 ## API
 **MicroExpNet(x, y, teacherLogits, lr, nClasses, imgXdim, imgYdim, batchSize, keepProb, temperature, lambda_)**
 
-This is the class where the magic happens. Take a look at exampleUsage.py for a quick test drive.
+This is the class where the magic happens. Take a look at **exampleUsage.py** for a quick test drive.
 
 **Parameters**
   - x: Tensorflow placeholder for input images 
