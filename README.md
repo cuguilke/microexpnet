@@ -46,7 +46,7 @@ This is the class where the magic happens. Take a look at **exampleUsage.py** fo
   - imgXdim: Dimension of the image (default: 84)
   - imgYdim: Dimension of the image (default: 84)
   - batchSize: Batch size (default: 64)
-  - keepProb: Dropout (default: 0.5)
+  - keepProb: Dropout (default: 1)
   - temperature: The hyperparameter to soften the teacher's probability distributions (default: 8)
   - lamba_: Weight of the soft targets (default: 0.5)
 
