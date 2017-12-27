@@ -54,6 +54,10 @@ This is the class where the magic happens. Take a look at **exampleUsage.py** fo
 
 We provide pre-trained MicroExpNet models for both CK+ and Oulu-CASIA.
 
+In addition, one can find sample pre-trained teacher models which are derived from the original [Caffe](http://caffe.berkeleyvision.org/) implementation of [ResNet50](https://github.com/KaimingHe/deep-residual-networks):
+ * [TeacherExpNet_OuluCASIA.caffemodel](http://user.ceng.metu.edu.tr/~e1881739/microexpnet/TeacherExpNet_OuluCASIA.caffemodel) 
+ * [TeacherExpNet_deploy.prototxt](http://user.ceng.metu.edu.tr/~e1881739/microexpnet/TeacherExpNet_deploy.prototxt) 
+
 **Labels of the both models**
 
 `0: neutral, 1: anger, 2: contempt, 3: disgust, 4: fear, 5: happy, 6: sadness, 7: surprise`
