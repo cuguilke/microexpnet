@@ -58,7 +58,7 @@ class MicroExpNet():
 		'wc2': tf.get_variable('wc2', [4, 4, 16, 32], initializer=tf.contrib.layers.xavier_initializer_conv2d()),
 		# fully connected, 3872 inputs, 16 outputs
 		'wfc': tf.get_variable('wfc', [32*11*11, self.fcOutSize], initializer=tf.contrib.layers.xavier_initializer()),
-		# 256 inputs, 8 outputs (class prediction)
+		# 16 inputs, 8 outputs (class prediction)
 		'out': tf.get_variable('wo', [self.fcOutSize, self.nClasses], initializer=tf.contrib.layers.xavier_initializer())
 		}
 		self.b = {
