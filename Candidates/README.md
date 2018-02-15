@@ -25,8 +25,11 @@ trainCandidates is a standalone Python script; you can control its behavior by p
 
 ## API
 **CandidateExpNet_v(x, y, lr, nClasses, imgXdim, imgYdim, batchSize, keepProb, squeezeCoefficient)**
-**CandidateExpNet_p1(x, y, lr, nClasses, imgXdim, imgYdim, batchSize, keepProb, squeezeCoefficient)** 
-**CandidateExpNet_p2(x, y, lr, nClasses, imgXdim, imgYdim, batchSize, keepProb, squeezeCoefficient)** 
+
+**CandidateExpNet_p1(x, y, lr, nClasses, imgXdim, imgYdim, batchSize, keepProb, squeezeCoefficient)**
+
+**CandidateExpNet_p2(x, y, lr, nClasses, imgXdim, imgYdim, batchSize, keepProb, squeezeCoefficient)**
+
 **CandidateExpNet_p12(x, y, lr, nClasses, imgXdim, imgYdim, batchSize, keepProb, squeezeCoefficient)** 
 
 These classes are used to build each candidate networks explained in the paper.
