@@ -92,7 +92,7 @@ if __name__ == '__main__':
 		batches = []
 		test_batches = []
 		if type(valSet) == type("str"):
-			testX, testY, testSoftTargets = deployImages(valSet, teacherSoftmaxInputs)
+			testX, testY, testSoftTargets = deployImages(valSet, None)
 			testY = produceOneHot(testY, nClasses)
 			for i in range(10):
 				batches.extend(produceBatch(folds[i]['x'], folds[i]['y'], folds[i]['softy'], batchSize))
