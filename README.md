@@ -54,10 +54,10 @@ This is the class where the magic happens. Take a look at **exampleUsage.py** fo
 
 We provide pre-trained MicroExpNet models for both CK+ and Oulu-CASIA.
 
-In addition, one can find sample pre-trained teacher models which are derived from the original [Caffe](http://caffe.berkeleyvision.org/) implementation of [ResNet50](https://github.com/KaimingHe/deep-residual-networks):
- * [TeacherExpNet_CK.caffemodel](http://user.ceng.metu.edu.tr/~e1881739/microexpnet/TeacherExpNet_CK.caffemodel)
- * [TeacherExpNet_OuluCASIA.caffemodel](http://user.ceng.metu.edu.tr/~e1881739/microexpnet/TeacherExpNet_OuluCASIA.caffemodel) 
- * [TeacherExpNet_deploy.prototxt](http://user.ceng.metu.edu.tr/~e1881739/microexpnet/TeacherExpNet_deploy.prototxt) 
+In addition, one can find sample pre-trained teacher models which are derived from the original [Keras](https://github.com/keras-team/keras) implementation of [Inception_v3](https://keras.io/applications/#inceptionv3):
+ * [TeacherExpNet_CK.h5](http://user.ceng.metu.edu.tr/~e1881739/microexpnet/TeacherExpNet_CK.h5)
+ * [TeacherExpNet_OuluCASIA.h5](http://user.ceng.metu.edu.tr/~e1881739/microexpnet/TeacherExpNet_OuluCASIA.h5) 
+ * [TeacherExpNet.json](http://user.ceng.metu.edu.tr/~e1881739/microexpnet/TeacherExpNet.json) 
 
 **Labels of the both models**
 
