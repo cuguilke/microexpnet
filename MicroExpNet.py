@@ -2,9 +2,9 @@
 Title           :MicroExpNet.py
 Description     :CNN class for facial expression recognition
 Author          :Ilke Cugu & Eren Sener & Emre Akbas
-Date Created    :20170428
-Date Modified   :20171210
-version         :1.5
+Date Created    :28-04-2017
+Date Modified   :19-01-2019
+version         :1.6
 python_version  :2.7.11
 '''
 import tensorflow as tf
@@ -24,7 +24,7 @@ class MicroExpNet():
 		self.batchSize = batchSize 
 		self.learningRate = lr 
 		self.dropout = keepProb
-		self.fcOutSize = 16
+		self.fcOutSize = 48
 		
 		# Initialize parameters randomly and run
 		self.initParameters()
@@ -56,9 +56,9 @@ class MicroExpNet():
 		'wc1': tf.get_variable('wc1', [8, 8, 1, 16], initializer=tf.contrib.layers.xavier_initializer_conv2d()),
 		# 4x4 conv, 16 inputs, 32 outputs
 		'wc2': tf.get_variable('wc2', [4, 4, 16, 32], initializer=tf.contrib.layers.xavier_initializer_conv2d()),
-		# fully connected, 3872 inputs, 16 outputs
-		'wfc': tf.get_variable('wfc', [32*11*11, self.fcOutSize], initializer=tf.contrib.layers.xavier_initializer()),
-		# 16 inputs, 8 outputs (class prediction)
+		# fully connected, 1152 inputs, 48 outputs
+		'wfc': tf.get_variable('wfc', [32*6*6, self.fcOutSize], initializer=tf.contrib.layers.xavier_initializer()),
+		# 48 inputs, 8 outputs (class prediction)
 		'out': tf.get_variable('wo', [self.fcOutSize, self.nClasses], initializer=tf.contrib.layers.xavier_initializer())
 		}
 		self.b = {
@@ -84,14 +84,18 @@ class MicroExpNet():
 		x = tf.reshape(self.x, shape=[-1, self.imgXdim, self.imgYdim, 1])
 
 		# Convolution Layer
-		conv1 = self.conv2d(x, self.w['wc1'], self.b['bc1'], 4) 
+		conv1 = self.conv2d(x, self.w['wc1'], self.b['bc1'], 2) 
 		# ReLU Regularization
 		conv1_relu = self.ReLU(conv1)
+		# Max Pooling
+		conv1_pool = self.maxpool2d(conv1_relu)
 
 		# Convolution Layer
 		conv2 = self.conv2d(conv1_relu, self.w['wc2'], self.b['bc2'], 2) 
 		# ReLU Regularization
 		conv2_relu = self.ReLU(conv2)
+		# Max Pooling
+		conv2_pool = self.maxpool2d(conv2_relu)
 		
 		# Fully connected later
 		fc1 = tf.reshape(conv2_relu, [-1, self.w['wfc'].get_shape().as_list()[0]])
