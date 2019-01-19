@@ -91,14 +91,14 @@ class MicroExpNet():
 		conv1_pool = self.maxpool2d(conv1_relu)
 
 		# Convolution Layer
-		conv2 = self.conv2d(conv1_relu, self.w['wc2'], self.b['bc2'], 2) 
+		conv2 = self.conv2d(conv1_pool, self.w['wc2'], self.b['bc2'], 2) 
 		# ReLU Regularization
 		conv2_relu = self.ReLU(conv2)
 		# Max Pooling
 		conv2_pool = self.maxpool2d(conv2_relu)
 		
 		# Fully connected later
-		fc1 = tf.reshape(conv2_relu, [-1, self.w['wfc'].get_shape().as_list()[0]])
+		fc1 = tf.reshape(conv2_pool, [-1, self.w['wfc'].get_shape().as_list()[0]])
 		fc1 = tf.add(tf.matmul(fc1, self.w['wfc']), self.b['bfc'])
 		fc1 = self.ReLU(fc1) 
 		fc1 = tf.nn.dropout(fc1, self.dropout)
