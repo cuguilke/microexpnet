@@ -3,8 +3,8 @@ Title           :MicroExpNet.py
 Description     :CNN class for facial expression recognition
 Author          :Ilke Cugu & Eren Sener & Emre Akbas
 Date Created    :28-04-2017
-Date Modified   :19-01-2019
-version         :1.6
+Date Modified   :11-04-2019
+version         :1.7
 python_version  :2.7.11
 '''
 import tensorflow as tf
@@ -77,6 +77,10 @@ class MicroExpNet():
 	def ReLU(self, x):
 		# ReLU wrapper
 		return tf.nn.relu(x)
+
+	def maxpool2d(self, x, k=2):
+		# MaxPool2D wrapper
+		return tf.nn.max_pool(x, ksize=[1, k, k, 1], strides=[1, k, k, 1], padding='SAME')
 
 	def run(self):
 		# Reshape input picture
