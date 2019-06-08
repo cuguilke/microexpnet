@@ -75,7 +75,7 @@ if __name__ == '__main__':
 		
 		# Deploy images and their labels
 		print("[" + get_time() + "] " + "Deploying images...")
-		trainX, trainY, _ = deployImages(labelPath, None)
+		trainX, trainY, teacherLogits = deployImages(labelPath, None)
 		
 		# Produce one-hot labels
 		print("[" + get_time() + "] " + "Producing one-hot labels...")
@@ -89,17 +89,17 @@ if __name__ == '__main__':
 		if type(valSet) == type("str"):
 			testX, testY, _ = deployImages(valSet, None)
 			testY = produceOneHot(testY, nClasses)
-			batches.extend(produceBatch(trainX, trainY, None, batchSize))
+			batches.extend(produceBatch(trainX, trainY, teacherLogits, batchSize))
 			test_batches.extend(produceBatch(testX, testY, None, batchSize))
 		else:
 			# Produce 10 folds for training & validation
-			folds = produce10foldCrossVal(trainX, trainY, None, labelPath)
+			folds = produce10foldCrossVal(trainX, trainY, teacherLogits, labelPath)
 
 			for i in range(10):
 				if i != valSet:
-					batches.extend(produceBatch(folds[i]['x'], folds[i]['y'], folds[i]['softy'], batchSize))
+					batches.extend(produceBatch(folds[i]['x'], folds[i]['y'], folds[i]['teacherLogits'], batchSize))
 				else:
-					test_batches.extend(produceBatch(folds[i]['x'], folds[i]['y'], folds[i]['softy'], batchSize))
+					test_batches.extend(produceBatch(folds[i]['x'], folds[i]['y'], folds[i]['teacherLogits'], batchSize))
 		
 		print("[" + get_time() + "] " + "Initializing placeholders...")
 		

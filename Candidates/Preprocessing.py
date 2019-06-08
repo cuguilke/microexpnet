@@ -46,12 +46,12 @@ def deployImages(labelpath, TeacherSoftmaxInputs):
 			im = cv2.imread(filename) 
 			gray_im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)  
 			mirror_ims = mirrorImages(gray_im)
-			if TeacherSoftmaxInputs != None:
-				y_values.append(TeacherSoftmaxInputs[filename])			
 			for i in mirror_ims:
 				gray_im = i.reshape(i.shape[0]*i.shape[1])				
 				images.append(gray_im)
 				labels = np.append(labels, label)
+				if TeacherSoftmaxInputs != None:
+					y_values.append(TeacherSoftmaxInputs[filename])	
 
 	return np.array(images), labels, np.array(y_values)
 		
@@ -62,7 +62,7 @@ def produceOneHot(y, n_classes):
 		new_y[i][int(y[i])] = 1
 	return new_y 
 
-def produce10foldCrossVal(x, y, trainY_soft, labelpath):
+def produce10foldCrossVal(x, y, teacherLogits, labelpath):
 	# Separate validation and training sets 
 	folds = []
 	labels = []
@@ -78,44 +78,51 @@ def produce10foldCrossVal(x, y, trainY_soft, labelpath):
 			# Feel free to modify this part with your own way of indicating fold IDs
 			labels.append(int(f.split('/')[5][-1]))
 	partition_x = []
-	partition_y = [] 
+	partition_y = []
+	partition_teacherLogits = [] 
 	last_batch_no = 0
 	n = len(labels)
 	for i in range(n):
 		batch_no = labels[i]
 		if batch_no != last_batch_no:
-			folds.append({'x': np.array(partition_x), 'y': np.array(partition_y), 'softy': None})
+			folds.append({'x': np.array(partition_x), 'y': np.array(partition_y), 'teacherLogits': None})
 			partition_x = []
 			partition_y = []
+			partition_teacherLogits = []
 		else:
 			for j in range(i*8,(i+1)*8): # Since each image is mirrored 
 				partition_x.append(x[j])
-				partition_y.append(y[j]) 
+				partition_y.append(y[j])
+				if teacherLogits != None:
+					teacherNetOut = teacherLogits[j]
+					partition_teacherLogits.append(teacherNetOut)
+				else:
+					partition_teacherLogits.append([])  
 		last_batch_no = batch_no
 	if len(partition_x) > 0:
-		folds.append({'x': np.array(partition_x), 'y': np.array(partition_y), 'softy': None})	
+		folds.append({'x': np.array(partition_x), 'y': np.array(partition_y), 'teacherLogits': None})	
 	return folds
 
-def produceBatch(x, y, softy, batchSize):
+def produceBatch(x, y, teacherLogits, batchSize):
 	batches = []
 	n = y.shape[0]
 	batch_x = []
 	batch_y = []
-	batch_softy = []
+	batch_teacherLogits = []
 	for i in range(0,n):
 		if i % batchSize == 0 and i != 0:
-			batches.append({'x': np.array(batch_x), 'y': np.array(batch_y), 'softy': np.array(batch_softy)})
+			batches.append({'x': np.array(batch_x), 'y': np.array(batch_y), 'teacherLogits': np.array(batch_teacherLogits)})
 			batch_x = []
 			batch_y = []
-			batch_softy = []
+			batch_teacherLogits = []
 		batch_x.append(x[i])
 		batch_y.append(y[i])
-		if softy != None:
-			batch_softy.append(softy[i]) 
+		if teacherLogits != None:
+			batch_teacherLogits.append(teacherLogits[i]) 
 		else:
-			batch_softy.append([]) 
+			batch_teacherLogits.append([]) 
 	if len(batch_x) > 0:
-		batches.append({'x': np.array(batch_x), 'y': np.array(batch_y), 'softy': np.array(batch_softy)}) # Add the leftovers as the last batch
+		batches.append({'x': np.array(batch_x), 'y': np.array(batch_y), 'teacherLogits': np.array(batch_teacherLogits)}) # Add the leftovers as the last batch
 	return batches
 
 def get_time():
