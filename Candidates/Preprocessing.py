@@ -2,9 +2,9 @@
 Title           :Preprocessing.py
 Description     :This script contains all functions required for data augmentation & preparation
 Author          :Ilke Cugu & Eren Sener
-Date Created    :20170428
-Date Modified   :20170428
-version         :1.0
+Date Created    :28-04-2017
+Date Modified   :09-06-2019
+version         :1.1
 python_version  :2.7.11
 '''
 
@@ -43,7 +43,6 @@ def deployImages(labelpath, TeacherSoftmaxInputs):
 			imageNames.append(filename)
 			#imageNames.append(filename.split('/')[-1])
 			label = int(f[1])
-			labels = np.append(labels, label)
 			im = cv2.imread(filename) 
 			gray_im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)  
 			mirror_ims = mirrorImages(gray_im)
@@ -52,6 +51,7 @@ def deployImages(labelpath, TeacherSoftmaxInputs):
 			for i in mirror_ims:
 				gray_im = i.reshape(i.shape[0]*i.shape[1])				
 				images.append(gray_im)
+				labels = np.append(labels, label)
 
 	return np.array(images), labels, np.array(y_values)
 		
@@ -63,16 +63,24 @@ def produceOneHot(y, n_classes):
 	return new_y 
 
 def produce10foldCrossVal(x, y, trainY_soft, labelpath):
-	n = y.shape[0]
 	# Separate validation and training sets 
 	folds = []
 	labels = []
 	with open(labelpath, "r") as labelfile:
 		for f in labelfile:
-			labels.append(int(f.split('/')[6][-1]))
+			# This line gathers fold IDs (10-fold cross-val) from a label file with a format like:
+			#	...
+			#	/home/cuguilke/Desktop/CK_new/fold1/n01497344_S028_001_00018.jpeg 1
+			#	/home/cuguilke/Desktop/CK_new/fold1/n01448192_S052_001_00045.jpeg 7
+			#	/home/cuguilke/Desktop/CK_new/fold1/n01456384_S044_004_00065.jpeg 0
+			#	/home/cuguilke/Desktop/CK_new/fold1/n01489152_S035_006_00021.jpeg 5
+			#	...
+			# Feel free to modify this part with your own way of indicating fold IDs
+			labels.append(int(f.split('/')[5][-1]))
 	partition_x = []
 	partition_y = [] 
 	last_batch_no = 0
+	n = len(labels)
 	for i in range(n):
 		batch_no = labels[i]
 		if batch_no != last_batch_no:
@@ -82,7 +90,7 @@ def produce10foldCrossVal(x, y, trainY_soft, labelpath):
 		else:
 			for j in range(i*8,(i+1)*8): # Since each image is mirrored 
 				partition_x.append(x[j])
-				partition_y.append(y[i]) 
+				partition_y.append(y[j]) 
 		last_batch_no = batch_no
 	if len(partition_x) > 0:
 		folds.append({'x': np.array(partition_x), 'y': np.array(partition_y), 'softy': None})	

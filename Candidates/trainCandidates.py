@@ -3,9 +3,9 @@ Title           :trainCandidates.py
 Description     :This script trains Candidate nets, plots learning curves 
 				 and saves corresponding Tensorflow models 
 Author          :Ilke Cugu & Eren Sener
-Date Created    :20170428
-Date Modified   :20171119
-version         :1.2
+Date Created    :28-04-2017
+Date Modified   :09-06-2019
+version         :1.3
 python_version  :2.7.11
 '''
 
@@ -81,23 +81,20 @@ if __name__ == '__main__':
 		print("[" + get_time() + "] " + "Producing one-hot labels...")
 		trainY = produceOneHot(trainY, nClasses)
 		
-		# Produce 10 batches for training & validation
-		print("[" + get_time() + "] " + "Producing validation & training sets...")
-		folds = produce10foldCrossVal(trainX, trainY, None, labelPath) 	
-	
-		print("[" + get_time() + "] " + "Preparation part is completed.")
 		print("[" + get_time() + "] " + "Start training for val[" + str(valSet) + "]")
 		
 		print("[" + get_time() + "] " + "Initializing batches...")
 		batches = []
 		test_batches = []
 		if type(valSet) == type("str"):
-			testX, testY, testSoftTargets = deployImages(valSet, None)
+			testX, testY, _ = deployImages(valSet, None)
 			testY = produceOneHot(testY, nClasses)
-			for i in range(10):
-				batches.extend(produceBatch(folds[i]['x'], folds[i]['y'], folds[i]['softy'], batchSize))
+			batches.extend(produceBatch(trainX, trainY, None, batchSize))
 			test_batches.extend(produceBatch(testX, testY, None, batchSize))
 		else:
+			# Produce 10 folds for training & validation
+			folds = produce10foldCrossVal(trainX, trainY, None, labelPath)
+
 			for i in range(10):
 				if i != valSet:
 					batches.extend(produceBatch(folds[i]['x'], folds[i]['y'], folds[i]['softy'], batchSize))
