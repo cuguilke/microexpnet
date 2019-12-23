@@ -29,7 +29,7 @@ If you use these models in your research, please cite:
   author = {{\c{C}}u{\u{g}}u, {\.I}lke and {\c{S}}ener, Eren and Akba{\c{s}}, Emre},
   booktitle = {International Conference on Image Processing Theory, Tools & Applications (IPTA)},
   month = {November},
-  year={2017}
+  year={2019}
 }
 ```
 
