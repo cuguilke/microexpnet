@@ -24,12 +24,13 @@ MicroExpNet is an extremely small (under 1MB) and fast (1851 FPS on i7 CPU) [Ten
 If you use these models in your research, please cite:
 
 ```
-@article{ccuugu2017microexpnet,
-  title = {MicroExpNet: An Extremely Small and Fast Model For Expression Recognition From Face Images},
-  author = {{\c{C}}u{\u{g}}u, {\.I}lke and {\c{S}}ener, Eren and Akba{\c{s}}, Emre},
-  booktitle = {International Conference on Image Processing Theory, Tools & Applications (IPTA)},
-  month = {November},
-  year = {2019}
+@inproceedings{cugu2019microexpnet,
+  title={MicroExpNet: An Extremely Small and Fast Model For Expression Recognition From Face Images},
+  author={Cugu, Ilke and Sener, Eren and Akbas, Emre},
+  booktitle={2019 Ninth International Conference on Image Processing Theory, Tools and Applications (IPTA)},
+  pages={1--6},
+  year={2019},
+  organization={IEEE}
 }
 ```
 
