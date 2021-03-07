@@ -1,6 +1,6 @@
 # MicroExpNet
 
-By [Ilke Cugu](http://user.ceng.metu.edu.tr/~e1881739/), [Eren Sener](https://scholar.google.com.tr/citations?user=xDRyyxoAAAAJ&hl=en), [Emre Akbas](http://user.ceng.metu.edu.tr/~emre/).
+By [Ilke Cugu](https://cuguilke.github.io/), [Eren Sener](https://scholar.google.com.tr/citations?user=xDRyyxoAAAAJ&hl=en), [Emre Akbas](http://user.ceng.metu.edu.tr/~emre/).
 
 ## Table of Contents
 
